@@ -3,7 +3,6 @@ package io.github.pgabrieldeveloper.adjaflouvor.services.impl;
 import org.springframework.stereotype.Service;
 
 import io.github.pgabrieldeveloper.adjaflouvor.models.Escala;
-import io.github.pgabrieldeveloper.adjaflouvor.models.Musica;
 import io.github.pgabrieldeveloper.adjaflouvor.repositories.EscalaRepository;
 import io.github.pgabrieldeveloper.adjaflouvor.services.EscalaService;
 import lombok.RequiredArgsConstructor;
