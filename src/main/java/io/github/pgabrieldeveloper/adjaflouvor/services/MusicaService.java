@@ -12,5 +12,5 @@ public interface MusicaService {
 
     Mono<Musica> save(Musica musica);
 
-    Mono<Musica> delete(Musica musica);
+    Mono<Void> delete(Musica musica);
 }
