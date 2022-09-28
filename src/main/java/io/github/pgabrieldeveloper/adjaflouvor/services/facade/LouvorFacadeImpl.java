@@ -1,12 +1,17 @@
 package io.github.pgabrieldeveloper.adjaflouvor.services.facade;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import io.github.pgabrieldeveloper.adjaflouvor.models.Escala;
 import io.github.pgabrieldeveloper.adjaflouvor.models.Grupo;
 import io.github.pgabrieldeveloper.adjaflouvor.models.Musica;
+import io.github.pgabrieldeveloper.adjaflouvor.models.MusicaCulto;
 import io.github.pgabrieldeveloper.adjaflouvor.services.EscalaService;
 import io.github.pgabrieldeveloper.adjaflouvor.services.GrupoService;
+import io.github.pgabrieldeveloper.adjaflouvor.services.MusicaCultoService;
 import io.github.pgabrieldeveloper.adjaflouvor.services.MusicaService;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
@@ -19,6 +24,7 @@ public class LouvorFacadeImpl implements LouvorFacade {
     private final EscalaService escalaService;
     private final GrupoService grupoService;
     private final MusicaService musicaService;
+    private final MusicaCultoService musicaCultoService;
 
 
     @Override
@@ -53,6 +59,13 @@ public class LouvorFacadeImpl implements LouvorFacade {
 
     @Override
     public Mono<Escala> saveEscala(Escala escala) {
+        var listaEscala = escala.getMusicaCultos();
+        List<MusicaCulto> musicaCultos = new ArrayList<>();
+        Flux.fromStream(listaEscala.stream().map(musicaCultoService::save))
+            .flatMap(e -> e)
+            .map(musicaCultos::add)
+            .subscribe();
+        escala.setMusicaCultos(musicaCultos);
         return escalaService.save(escala);
     }
 
