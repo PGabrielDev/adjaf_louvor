@@ -1,6 +1,5 @@
 package io.github.pgabrieldeveloper.adjaflouvor.services.facade;
 
-import org.springframework.boot.autoconfigure.mustache.MustacheAutoConfiguration;
 
 import io.github.pgabrieldeveloper.adjaflouvor.models.Escala;
 import io.github.pgabrieldeveloper.adjaflouvor.models.Grupo;
@@ -32,7 +31,7 @@ public interface LouvorFacade {
     
     Mono<Grupo> saveGrupo(Grupo grupo);
 
-    Mono<Grupo> deleteGrupo(Grupo grupo);
+    Mono<Void> deleteGrupo(Grupo grupo);
 
 
     
