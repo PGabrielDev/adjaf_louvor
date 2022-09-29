@@ -17,6 +17,7 @@ public class MusicaCulto {
     private String id;
     private String culto;
     private String regente;
+    private Musica musica;
     private Date data;
 
 }
